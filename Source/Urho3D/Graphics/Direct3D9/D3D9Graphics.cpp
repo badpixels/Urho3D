@@ -57,7 +57,7 @@
 #include "../../Graphics/VertexDeclaration.h"
 #include "../../Graphics/Zone.h"
 
-#include <SDL/SDL_syswm.h>
+#include <SDL2/SDL_syswm.h>
 
 #include "../../DebugNew.h"
 

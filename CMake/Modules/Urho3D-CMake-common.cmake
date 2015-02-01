@@ -704,7 +704,7 @@ macro (setup_main_executable)
     if (ANDROID)
         # Add SDL native init function, SDL_Main() entry point must be defined by one of the source files in ${SOURCE_FILES}
         find_file (ANDROID_MAIN_C_PATH SDL_android_main.c
-            HINTS ${URHO3D_HOME}/include/${PATH_SUFFIX}/ThirdParty/SDL/android ${CMAKE_SOURCE_DIR}/Source/ThirdParty/SDL/src/main/android
+            HINTS ${URHO3D_HOME}/include/${PATH_SUFFIX}/ThirdParty/SDL2/android ${CMAKE_SOURCE_DIR}/Source/ThirdParty/SDL2/src/main/android
             DOC "Path to SDL_android_main.c" NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
         mark_as_advanced (ANDROID_MAIN_C_PATH)  # Hide it from cmake-gui in non-advanced mode
         if (ANDROID_MAIN_C_PATH)
@@ -793,8 +793,8 @@ endmacro ()
 # The purpose of this macro is emulate CMake to set the external library dependencies transitively
 # It works for both targets setup within Urho3D project and outside Urho3D project that uses Urho3D as external static/shared library
 macro (define_dependency_libs TARGET)
-    # ThirdParty/SDL external dependency
-    if (${TARGET} MATCHES SDL|Urho3D)
+    # ThirdParty/SDL2 external dependency
+    if (${TARGET} MATCHES SDL2|Urho3D)
         if (WIN32)
             list (APPEND LIBS user32 gdi32 winmm imm32 ole32 oleaut32 version uuid)
         elseif (APPLE)

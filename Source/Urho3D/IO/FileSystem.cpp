@@ -30,7 +30,7 @@
 #include "../IO/Log.h"
 #include "../Core/Thread.h"
 
-#include <SDL/SDL_filesystem.h>
+#include <SDL2/SDL_filesystem.h>
 
 #include <cstdio>
 #include <cstring>

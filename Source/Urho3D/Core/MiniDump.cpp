@@ -31,7 +31,7 @@
 #include <time.h>
 #include <windows.h>
 #include <dbghelp.h>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 namespace Urho3D
 {

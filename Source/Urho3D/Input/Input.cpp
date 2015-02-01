@@ -39,7 +39,7 @@
 
 #include <cstring>
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 #include "../DebugNew.h"
 
@@ -1258,11 +1258,19 @@ void Input::HandleSDLEvent(void* sdlEvent)
     {
     case SDL_KEYDOWN:
         // Convert to uppercase to match Win32 virtual key codes
+        #ifdef EMSCRIPTEN
+        SetKey(ConvertSDLKeyCode(evt.key.keysym.sym, evt.key.keysym.scancode), evt.key.keysym.scancode, evt.key.keysym.unused, true);
+        #else
         SetKey(ConvertSDLKeyCode(evt.key.keysym.sym, evt.key.keysym.scancode), evt.key.keysym.scancode, evt.key.keysym.raw, true);
+        #endif
         break;
 
     case SDL_KEYUP:
+        #ifdef EMSCRIPTEN
+        SetKey(ConvertSDLKeyCode(evt.key.keysym.sym, evt.key.keysym.scancode), evt.key.keysym.scancode, evt.key.keysym.unused, false);
+        #else
         SetKey(ConvertSDLKeyCode(evt.key.keysym.sym, evt.key.keysym.scancode), evt.key.keysym.scancode, evt.key.keysym.raw, false);
+        #endif
         break;
 
     case SDL_TEXTINPUT:
