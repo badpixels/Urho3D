@@ -51,11 +51,7 @@ if (URHO3D_LIB_TYPE STREQUAL SHARED AND NOT WIN32 AND NOT ANDROID AND NOT IOS)
 endif ()
 
 # Add targets
-foreach (TARGET FreeType JO LZ4 PugiXml rapidjson SDL StanHull STB)
-#    add_subdirectory (ThirdParty/${TARGET})
-#endforeach ()
-#set (THIRDPARTY_TARGETS FreeType JO LZ4 PugiXml STB Duktape)
-set (THIRDPARTY_TARGETS FreeType JO LZ4 PugiXml StanHull STB)
+set (THIRDPARTY_TARGETS FreeType JO LZ4 PugiXml rapidjson StanHull STB)
 
 if (NOT EMSCRIPTEN)
     #set (THIRDPARTY_TARGETS ${THIRDPARTY_TARGETS} TurboBadger SDL)

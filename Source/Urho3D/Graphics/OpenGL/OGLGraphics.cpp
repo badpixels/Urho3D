@@ -440,12 +440,14 @@ bool Graphics::SetMode(int width, int height, bool fullscreen, bool borderless, 
         {
             if (!externalWindow_)
                 impl_->window_ = SDL_CreateWindow(windowTitle_.CString(), x, y, width, height, flags);
+            #if !defined(EMSCRIPTEN)
             else
             {
                 if (!impl_->window_)
                     impl_->window_ = SDL_CreateWindowFrom(externalWindow_, SDL_WINDOW_OPENGL);
                 fullscreen = false;
             }
+            #endif
             
             if (impl_->window_)
                 break;

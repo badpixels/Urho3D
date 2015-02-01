@@ -1,4 +1,5 @@
 $pfile "Input/Input.pkg"
+$pfile "Input/Controls.pkg"
 $pfile "Input/InputEvents.pkg"
 
 $using namespace Urho3D;

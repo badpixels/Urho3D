@@ -106,7 +106,11 @@ Input::Input(Context* context) :
     mouseMoveWheel_(0),
     windowID_(0),
     toggleFullscreen_(true),
+#if defined(EMSCRIPTEN) // TODO: properly implement relative mouse motion with emscripten
+    mouseVisible_(true),
+#else
     mouseVisible_(false),
+#endif
     lastMouseVisible_(false),
     mouseGrabbed_(false),
     mouseMode_(MM_ABSOLUTE),
@@ -723,12 +727,18 @@ unsigned Input::LoadGestures(Deserializer& source)
 
 bool Input::RemoveGesture(unsigned gestureID)
 {
+#if defined(EMSCRIPTEN)
+    return false;
+#else
     return SDL_RemoveDollarTemplate(gestureID) != 0;
+#endif
 }
 
 void Input::RemoveAllGestures()
 {
+#if !defined(EMSCRIPTEN)
     SDL_RemoveAllDollarTemplates();
+#endif
 }
 
 SDL_JoystickID Input::OpenJoystick(unsigned index)
